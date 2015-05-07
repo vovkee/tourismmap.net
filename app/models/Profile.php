@@ -2,12 +2,11 @@
 
 class Profile extends Eloquent {
 
-    protected $table = 'profile';
-    protected $fillable = array('user_id', 'about');
+    protected $fillable = array('user_id', 'about', 'profilePic');
     protected $primaryKey = 'user_id';
 
-    public function getUser()
+    public function user()
     {
-        return $this->belongsTo('User', 'user_id');
+        return $this->belongsTo('User');
     }
 }

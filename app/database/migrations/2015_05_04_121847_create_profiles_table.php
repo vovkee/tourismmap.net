@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration {
         {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('profilePic')->default('https://s3.amazonaws.com/akiaisoxi7kjcprfrvjq/artists/placeholder.png');
+            $table->string('profilePic')->default('/img/user.jpg');
             $table->string('about', 255);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

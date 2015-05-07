@@ -122,7 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
-
+        'KevBaldwyn\Image\Providers\Laravel\ImageServiceProvider',
 	),
 
 	/*
@@ -190,6 +190,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+        'Image' => 'KevBaldwyn\Image\Providers\Laravel\Facades\Image',
 
 	),
 

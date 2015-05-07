@@ -7,7 +7,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
         "codesleeve/laravel-stapler": "1.0.*",
-		"smalldogs/html5inputs": "2.*"
+		"smalldogs/html5inputs": "2.*",
+		"kevbaldwyn/image": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

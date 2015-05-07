@@ -29,22 +29,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface,Staple
 
 	static public function createUser($data)
 	{
-		try
-		{
-			$user = new User();
-			$user->name = $data['name'];
-			$user->surname = $data['surname'];
-			$user->email = $data['email'];
-			$user->password = Hash::make($data['password']);
-		}
-		catch(Exception $e)
-		{
-			return $e;
-		}
+        $user = new User();
+        $user->name = $data['name'];
+        $user->surname = $data['surname'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
 		return $user;
 	}
 
-    public function getProfile()
+    public function profile()
     {
         return $this->hasOne("Profile", "user_id");
     }

@@ -16,19 +16,24 @@ class ProfileController extends BaseController
     public function updateProfile()
     {
         $file = Input::file('pic');
-        $profile = Profile::Where('user_id', '=', Auth::user()->id)->get();
+        $profile = Profile::Where('user_id', '=', Auth::user()->id)->firstOrFail();
         $profile->about = Input::get('about');
-
-        $fileName = Str::random(8);
+        $user = User::find(Auth::user()->id);
+        $user->name = Input::get('name');
+        $user->surname = Input::get('surname');
+        $user->email = Input::get('email');
+        $user->birth_date = Input::get('birth');
+        $user->save();
+        $fileName = md5_file($file->getRealPath());
         $extension = $file->getClientOriginalExtension();
         $name = $fileName.'.'.$extension;
 
-        $profile->profilePic = 'http://tourismmap.net/img/'.$name;
-        $profile->save();
-
-        $file->move('img/', $name);
-
-        return $profile->profilePic;
+        $profile->profilePic = '/img/'.$name;
+        if($file->move(public_path()."/img", $name)){
+            $profile->save();
+            return $profile->profilePic;
+        }
+        return Redirect::to('profile'); //@todo FLASHBAG message
     }
 
 //    public function index()
