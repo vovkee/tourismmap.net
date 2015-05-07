@@ -28,7 +28,7 @@
                     <input id="birth" class="form-control" type="date" value="{{Auth::user()->birth_date}}">
 
                     <label>Write something about yourself:</label>
-                    <textarea class="form-control" id="aboutMe" placeholder="About you"></textarea>
+                    <textarea class="form-control" id="aboutMe" placeholder="About you">{{Auth::user()->profile->about}}</textarea>
                 </div>
                 <div id="mediaProgress" class="progress progress-striped active" style="display: none">
                     <div id="progressBar" class="progress-bar progress-bar-primary"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" id="uploadButton" class="btn btn-primary disabled pull-right" onclick="uploadProfilePicture()">Upload</button>
+            <button type="button" id="uploadButton" class="btn btn-primary pull-right" onclick="uploadProfilePicture()">Upload</button>
         </div>
     </div>
 

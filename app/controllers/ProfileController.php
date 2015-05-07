@@ -15,7 +15,7 @@ class ProfileController extends BaseController
 
     public function updateProfile()
     {
-        $file = Input::file('pic');
+        var_dump(Input::all());
         $profile = Profile::Where('user_id', '=', Auth::user()->id)->firstOrFail();
         $profile->about = Input::get('about');
         $user = User::find(Auth::user()->id);
@@ -23,16 +23,18 @@ class ProfileController extends BaseController
         $user->surname = Input::get('surname');
         $user->email = Input::get('email');
         $user->birth_date = Input::get('birth');
-        $user->save();
-        $fileName = md5_file($file->getRealPath());
-        $extension = $file->getClientOriginalExtension();
-        $name = $fileName.'.'.$extension;
+        $file = Input::file('pic');
+        if($file){
+            $fileName = md5_file($file->getRealPath());
+            $extension = $file->getClientOriginalExtension();
+            $name = $fileName.'.'.$extension;
 
-        $profile->profilePic = '/img/'.$name;
-        if($file->move(public_path()."/img", $name)){
+            $profile->profilePic = '/img/'.$name;
+            $file->move(public_path()."/img", $name);
             $profile->save();
-            return $profile->profilePic;
         }
+        $user->save();
+
         return Redirect::to('profile'); //@todo FLASHBAG message
     }
 

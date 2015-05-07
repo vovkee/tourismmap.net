@@ -1,27 +1,29 @@
 function changeProfilePicture()
-{
-    var selectedImg = $('#profilePicture')[0].files[0];
-
-    if (selectedImg)
     {
-        var previewId = document.getElementById('profileImage');
-        previewId.src = '';
+        var selectedImg = $('#profilePicture')[0].files[0];
 
-        var oReader = new FileReader();
-        oReader.onload = function(e)
+        if (selectedImg)
         {
-            previewId.src=e.target.result;
-        }
-        oReader.readAsDataURL(selectedImg);
+            var previewId = document.getElementById('profileImage');
+            previewId.src = '';
 
-        $('#uploadButton').removeClass('disabled');
-    }
+            var oReader = new FileReader();
+            oReader.onload = function(e)
+            {
+                previewId.src=e.target.result;
+            }
+            oReader.readAsDataURL(selectedImg);
+
+            $('#uploadButton').removeClass('disabled');
+        }
 }
 
 function uploadProfilePicture()
 {
     var file2 = document.getElementById("profilePicture").files[0];
-    var ext = file2.type;
+    if(file2){
+        var ext = file2.type;
+    }
     var about = $('#aboutMe').val();
     var email = $('#email').val();
     var birth = $('#birth').val();
@@ -40,7 +42,6 @@ function uploadProfilePicture()
     ajax.addEventListener("load", completeHandler, false);
     ajax.open("POST", "http://tourismmap.net/updateProfile");
     ajax.send(formdata);
-
 }
 
 function completeHandler(event)
